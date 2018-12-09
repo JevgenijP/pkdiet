@@ -16,7 +16,7 @@ class Person:
 if __name__ == "__main__":
 
     #Function which generate some data to fill instances of Person
-    #
+    # to make tests
     def gen_data(N):
         pain, ketones, glukose = {}
         for i in range(0, N, 1):
