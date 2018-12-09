@@ -18,11 +18,11 @@ if __name__ == "__main__":
     #Function which generate some data to fill instances of Person
     # to make tests
     def gen_data(N):
-        pain, ketones, glukose = {}
+        pain, ketones, glucose = {}
         for i in range(0, N, 1):
             pain.update({int(time.time()): random.randint(0,10) })
             ketones.update({int(time.time()): round(random.uniform(0.0, 6.0), 1) })
-            glukose.update({int(time.time()): round(random.uniform(3.0, 6.0), 1) })
+            glucose.update({int(time.time()): round(random.uniform(3.0, 6.0), 1) })
             time.sleep(random.randint(1, 5))
-        return pain, ketones, glukose
+        return pain, ketones, glucose
 
