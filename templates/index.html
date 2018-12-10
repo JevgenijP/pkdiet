@@ -1,7 +1,29 @@
-<!doctype html>
-<title>Hello from Flask</title>
-{% if name %}
-  <h1>Hello {{ name }}!</h1>
-{% else %}
-  <h1>Hello, World!</h1>
-{% endif %}
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="test">
+<h2>The XMLHttpRequest Object</h2>
+<button type="button" onclick="loadDoc()">Get Data</button>
+</div>
+
+<div id="demo">
+</div>
+
+
+<script>
+function loadDoc() {
+  var myObj, obj1, obj2, obj3, obj4, x, y, txt = "";
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", '/get/kuku', true);
+  xhttp.send();
+}
+</script>
+
+</body>
+</html>
