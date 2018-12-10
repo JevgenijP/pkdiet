@@ -7,40 +7,41 @@ from pathlib import Path
 
 class Person:
     def __init__(self, user):
-        self.exist = False
         self.id = uuid.uuid4()
         self.username = user
-        self.path_to_data = self.create_storage(user)
-        if not self.exist:
-            pain_level = {}
-            ketone_level = {}
-            glucose_level = {}
+        self.p_to_datastore = './' + user
+        self.datastore()
+        self.read_inst()
 
-    #Methods to write/read data
-    def create_storage(self, user):
-        path = Path('./' + user)
-        # Need to rewrite total bulshit!!!!
-        if path.is_dir():
-            print("Already exists, reading pickled object")
-            self.path_to_data = path
-            self.read_inst(str(user + 'current'))
-            self.exist = True
-            return path
 
-        else:
+    #Data structure to store user data
+    datastruct = {'user_data': {},
+                   'pain_level': {},
+                   'ketone_level': {},
+                   'glucose_level': {}
+                   }
+
+
+    #Methods to work with datastore
+    def datastore(self):
+        path = Path(self.p_to_datastore)
+        if not Path(self.p_to_datastore).is_dir():
+            #Initialize datastore for user.
+            #Create dir and serializeempty user data structure into it
             path.mkdir()
-            return path
+            self.write_inst()
 
     def write_inst(self):
-        f = open(self.path_to_data.name + '/' + str(self.username) + 'current', 'wb')
-        pickle.dump(self, f)
+        f = open(self.p_to_datastore + '/' + str(self.username) + 'current', 'wb')
+        pickle.dump(self.datastruct, f)
         f.close()
-    #Need to rewrite total bulshit!!!!
-    def read_inst(self, fname):
-        f = open(self.path_to_data.name + '/' + str(fname), 'rb')
-        someperson = pickle.load(f)
+
+
+    def read_inst(self):
+        f = open(self.p_to_datastore + '/' + str(self.username) + 'current', 'rb')
+        self.datastruct = pickle.load(f)
         f.close()
-        return someperson
+
 
     def delete_inst(self, fname):
         pass
@@ -59,6 +60,7 @@ if __name__ == "__main__":
             time.sleep(random.randint(1, 5))
         return pain, ketones, glucose
 
-    p1 = Person("ivan")
-    p2 = Person('user')
+
+
+
 
