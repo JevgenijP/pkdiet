@@ -72,6 +72,9 @@ if __name__ == "__main__":
             d['glucose_level'].update({int(time.time()): round(random.uniform(3.0, 6.0), 1) })
             time.sleep(random.randint(1, 5))
         return d
+    #print("Running")
+    #p1 = Person('test')
+    #p1.datastructure
 
 
 
