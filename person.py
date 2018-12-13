@@ -16,11 +16,11 @@ class Person:
 
 
     #Data structure to store user data
-    datastructure = {'user_data': {},
-                   'pain_level': {},
-                   'ketone_level': {},
-                   'glucose_level': {}
-                   }
+    datastructure = {'data_scheme': {'user_info': ['username'],
+                                     'records':  [['timestamp', 'ketone_level', 'glucose_level', 'pain_level']]},
+                     'user_info': [],
+                     'records': []
+                    }
 
 
     #Methods to work with datastore
@@ -64,12 +64,13 @@ if __name__ == "__main__":
 
     #Function which generate some data to fill instances of Person
     # to make tests
-    def gen_data(N, u = 'ivan'):
-        d= { 'user_data': { 'user': u}, 'pain_level': {}, 'ketones_level': {}, 'glucose_level': {}}
-        for i in range(0, N, 1):
-            d['pain_level'].update({int(time.time()): random.randint(0, 10)})
-            d['ketones_level'].update({int(time.time()): round(random.uniform(0.0, 6.0), 1) })
-            d['glucose_level'].update({int(time.time()): round(random.uniform(3.0, 6.0), 1) })
+    def gen_data(n, u='ivan'):
+        d = {'user_info': [u],
+             'records': []
+            }
+        #d= { 'user_data': { 'user': u}, 'pain_level': {}, 'ketones_level': {}, 'glucose_level': {}}
+        for i in range(0, n, 1):
+            d['records'].append([int(time.time()), round(random.uniform(3.0, 6.0), 1),  round(random.uniform(0.0, 6.0), 1), random.randint(0, 10) ])
             time.sleep(random.randint(1, 5))
         return d
     #print("Running")

@@ -17,5 +17,5 @@ def client():
 @app.route("/get/<user>")
 def get_user(user):
      u = Person(user)
-     return json.dumps(u.datastructure)
+     return json.dumps(u.datastructure['records'])
 
